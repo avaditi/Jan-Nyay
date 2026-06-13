@@ -1,0 +1,134 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-gold: var(--gold);
+  --color-gold-foreground: var(--gold-foreground);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0.75rem;
+
+  /* Brand palette pulled from the Jan-Nyay logo: deep navy + warm gold on parchment white */
+  --background: oklch(0.99 0.005 250);
+  --foreground: oklch(0.22 0.07 260);
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.22 0.07 260);
+
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.22 0.07 260);
+
+  --primary: oklch(0.28 0.09 260);           /* deep navy */
+  --primary-foreground: oklch(0.985 0.004 250);
+
+  --secondary: oklch(0.96 0.015 250);
+  --secondary-foreground: oklch(0.28 0.09 260);
+
+  --muted: oklch(0.96 0.012 250);
+  --muted-foreground: oklch(0.48 0.04 260);
+
+  --accent: oklch(0.94 0.04 80);             /* soft gold tint */
+  --accent-foreground: oklch(0.28 0.09 260);
+
+  --gold: oklch(0.78 0.13 80);               /* warm gold from logo */
+  --gold-foreground: oklch(0.22 0.07 260);
+
+  --success: oklch(0.62 0.16 150);
+  --warning: oklch(0.78 0.15 70);
+  --destructive: oklch(0.58 0.22 27);
+  --destructive-foreground: oklch(0.985 0.004 250);
+
+  --border: oklch(0.9 0.015 250);
+  --input: oklch(0.92 0.015 250);
+  --ring: oklch(0.78 0.13 80);
+
+  --gradient-hero: linear-gradient(135deg, oklch(0.22 0.08 260) 0%, oklch(0.32 0.1 265) 60%, oklch(0.4 0.09 270) 100%);
+  --gradient-gold: linear-gradient(135deg, oklch(0.82 0.14 85), oklch(0.7 0.14 65));
+  --shadow-elegant: 0 10px 40px -12px oklch(0.22 0.08 260 / 0.25);
+  --shadow-gold: 0 10px 30px -10px oklch(0.78 0.13 80 / 0.45);
+}
+
+.dark {
+  --background: oklch(0.16 0.04 260);
+  --foreground: oklch(0.96 0.01 250);
+  --card: oklch(0.2 0.05 260);
+  --card-foreground: oklch(0.96 0.01 250);
+  --popover: oklch(0.2 0.05 260);
+  --popover-foreground: oklch(0.96 0.01 250);
+  --primary: oklch(0.78 0.13 80);
+  --primary-foreground: oklch(0.18 0.05 260);
+  --secondary: oklch(0.26 0.05 260);
+  --secondary-foreground: oklch(0.96 0.01 250);
+  --muted: oklch(0.26 0.05 260);
+  --muted-foreground: oklch(0.72 0.03 250);
+  --accent: oklch(0.3 0.06 260);
+  --accent-foreground: oklch(0.96 0.01 250);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.78 0.13 80);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+  }
+  h1, h2, h3, .font-display { font-family: var(--font-display); letter-spacing: -0.01em; }
+}
+
+@utility bg-hero-gradient { background-image: var(--gradient-hero); }
+@utility bg-gold-gradient { background-image: var(--gradient-gold); }
+@utility shadow-elegant { box-shadow: var(--shadow-elegant); }
+@utility shadow-gold { box-shadow: var(--shadow-gold); }
+@utility text-gold { color: var(--color-gold); }
+@utility bg-gold { background-color: var(--color-gold); }
+@utility border-gold { border-color: var(--color-gold); }
+@utility ring-gold { --tw-ring-color: var(--color-gold); }
+
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 oklch(0.78 0.13 80 / 0.5); }
+  70% { box-shadow: 0 0 0 16px oklch(0.78 0.13 80 / 0); }
+  100% { box-shadow: 0 0 0 0 oklch(0.78 0.13 80 / 0); }
+}
+@utility animate-pulse-ring { animation: pulse-ring 2s infinite; }
+
+@keyframes float-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@utility animate-float-up { animation: float-up 0.6s ease-out both; }
